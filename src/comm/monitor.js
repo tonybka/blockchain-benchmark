@@ -9,7 +9,7 @@
 
 'use strict'
 
-var table         = require('table');
+var table = require('table');
 
 var Monitor = class {
     constructor(config_path) {

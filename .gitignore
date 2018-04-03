@@ -3,3 +3,4 @@ architecture.pptx
 *.bak
 node_modules/*
 **/report*.html
+reports/*

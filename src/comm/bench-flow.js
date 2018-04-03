@@ -22,6 +22,7 @@ var Monitor = require('./monitor.js');
 var Report  = require('./report.js');
 var Client  = require('./client/client.js');
 var blockchain, monitor, report, client;
+
 var resultsbyround = [];    // results table for each test round
 var round = 0;              // test round
 //var cache = {};             // memory cache to store defined output from child process, so different test case could exchange data if needed
@@ -72,7 +73,7 @@ var absCaliperDir = path.join(__dirname, '../..');
 * @config_path {string},path of the local configuration file
 */
 module.exports.run = function(configFile, networkFile) {
-    test("#######Caliper Test######", (t) => {
+    test("####### Caliper Test ######", (t) => {
         global.tapeObj = t;
         absConfigFile  = configFile;
         absNetworkFile = networkFile;
@@ -135,8 +136,9 @@ module.exports.run = function(configFile, networkFile) {
             printResultsByRound();
             monitor.printMaxStats();
             monitor.stop();
-            let date = new Date().toISOString().replace(/-/g,'').replace(/:/g,'').substr(0,15);
-            let output = path.join(process.cwd(), 'report'+date+'.html' );
+            let date = new Date();
+            let dateString = date.toISOString().replace(/-/g,'').replace(/:/g,'').substr(0,15);
+            let output = path.join(process.cwd(), '/../../'+'report' + dateString + '.html' );
             return report.generate(output).then(()=>{
                 demo.stopWatch(output);
                 console.log('Generated report at ' + output);
